@@ -8,35 +8,34 @@ import java.util.Scanner;
 public class INTRODUCTION {
 
     public static void main(String[] args) {
+        System.out.println("enter two number :");
         Scanner sc = new Scanner(System.in);
+        double num1 = sc.nextDouble();
+        double num2 = sc.nextDouble();
 
-        System.out.println("enter the number of rows :");
-        int rows = sc.nextInt();
-        
-        
-        // dimond printing
-        Diamond(rows);
+        // just swap for the larger element
+        double temp = num1 ;
+        num1 = num1>num2?num1:num2;
+        num2 = temp<num2?temp:num2;
+
+        System.out.println("GCD of the two number is :"+GCD(num1,num2));
+        System.out.println("LCM of the two number is :"+LCM(num1, num2));
+
     }
-    public static void Diamond(int rows){
-        for(int i =0;i<rows;i++){
-            for(int j=0;j<rows-1-i;j++){
-                System.out.print(" ");
+    public static double GCD(double num1,double num2){
+        while(true){
+            if(num1%num2==0){
+                return num2;
             }
-            for(int j =0;j<2*i+1;j++){
-                System.out.print("*");
+            else{
+                double temp = num1%num2;
+                num1 = num2;
+                num2=temp;
             }
-            
-        System.out.println();
         }
-        for(int i =rows-2;i>=0;i--){
-            for(int j=0;j<rows-1-i;j++){
-                System.out.print(" ");
-            }
-            for(int j =0;j<2*i+1;j++){
-                System.out.print("*");
-            }
-            
-        System.out.println();
-        }
+    }
+    public static double LCM(double num1,double num2){
+        double temp = (num1*num2)/GCD(num1,num2);
+        return temp;
     }
 }
